@@ -5,20 +5,15 @@ import java.io.IOException;
 
 public class CreateJokeFiles {
 
-    public static void main(String[] args) {
-        Path path = Paths.get("D:\\1\\2\\3\\4");
-        recursiveFolderTraverse(path);
-    }
-
-    private static void recursiveFolderTraverse(Path path) {
-        if (path == null) {
-            return;
-        }
-        createJokeJavaFile(path);
-        path = path.getParent();
-        if (path != null && !path.equals(path.getRoot())) {
-            recursiveFolderTraverse(path);
-        }
+    public static void main(String[] args) throws IOException {
+        Path path = Paths.get("D:\\1");
+        Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult postVisitDirectory(Path path, IOException e) {
+                createJokeJavaFile(path);
+                return FileVisitResult.CONTINUE;
+            }
+        });
     }
 
     private static void createJokeJavaFile(Path folder) {
