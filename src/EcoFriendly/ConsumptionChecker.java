@@ -14,9 +14,9 @@ public class ConsumptionChecker {
     public List<Consumer> ecoConsumers(List<Consumer> consumers) {
         List<Consumer> ecoConsumers = new ArrayList<>();
         for (Consumer consumer : consumers) {
-            if (Math.max(consumer.getWaterCountDay(), consumer.getWaterCountNight()) < consumption &&
-                    Math.max(consumer.getElectroCountDay(), consumer.getElectroCountNight()) < consumption &&
-                    Math.max(consumer.getGasCount(), consumer.getGasCount()) < consumption) {
+            if (consumer.getWaterCountDay() + consumer.getWaterCountNight() < consumption &&
+                    consumer.getElectroCountDay() + consumer.getElectroCountNight() < consumption &&
+                    consumer.getGasCount() < consumption) {
                 ecoConsumers.add(consumer);
             }
         }
