@@ -14,9 +14,9 @@ public class ConsumptionChecker {
     public List<Consumer> ecoConsumers(List<Consumer> consumers) {
         List<Consumer> ecoConsumers = new ArrayList<>();
         for (Consumer consumer : consumers) {
-            if (consumer.getWaterCountDay() + consumer.getWaterCountNight() < consumption &&
-                    consumer.getElectroCountDay() + consumer.getElectroCountNight() < consumption &&
-                    consumer.getGasCount() < consumption) {
+            if ((consumer.getWaterCountDay() + consumer.getWaterCountNight()) < consumption &&
+                    (consumer.getElectroCountDay() + consumer.getElectroCountNight()) < consumption &&
+                    (consumer.getGasCount()) < consumption) {
                 ecoConsumers.add(consumer);
             }
         }
