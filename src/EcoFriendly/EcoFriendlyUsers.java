@@ -11,8 +11,8 @@ public class EcoFriendlyUsers {
         FileReader readFileCsv = new ReadFileCsv(path);
         List<Consumer> allConsumers = readFileCsv.read();
 
-        ConsumptionChecker ecoFriendlyChecker = new ConsumptionChecker(400);
-        List<Consumer> ecoConsumers = ecoFriendlyChecker.ecoConsumers(allConsumers);
+        EcoFriendlyChecker ecoFriendlyChecker = new EcoFriendlyChecker(400);
+        List<Consumer> ecoConsumers = ecoFriendlyChecker.check(allConsumers);
 
         Path pathEco = path.getParent().resolve("data_eco.csv");
         FileWriter writeFileCsv = new WriteFileCsv(pathEco);
