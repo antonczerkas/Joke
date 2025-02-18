@@ -43,7 +43,7 @@ public class Report {
 
     public static String reportHistory(List<Report> reports, String studentUserName, int count) {
         return reports.stream()
-                .filter(report -> Objects.equals(report.getStudentUserName(), studentUserName))
+                .filter(report -> studentUserName.equals(report.getStudentUserName()))
                 .sorted(Comparator.comparing(Report::getDate).reversed())
                 .limit(count)
                 .sorted(Comparator.comparing(Report::getDate))
