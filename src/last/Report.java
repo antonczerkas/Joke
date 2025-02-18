@@ -48,7 +48,7 @@ public class Report {
                 .limit(count)
                 .sorted(Comparator.comparing(Report::getDate))
                 .forEach(report -> {
-                    result.append(report.getStudentUserName())
+                    result.append(report.getStudentUserName()).append("\n")
                             .append(report.getDate()).append("\n") // Добавляем дату
                             .append(report.getHours()).append("\n") // Добавляем количество часов
                             .append(report.getTitle()).append("\n") // Добавляем заголовок
