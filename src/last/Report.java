@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Report {
 
@@ -40,20 +41,13 @@ public class Report {
         return title;
     }
 
-    public static String reportHistory(List<Report> reports, String studentUserName, int count){
-        StringBuilder result = new StringBuilder();
-        reports.stream()
+    public static String reportHistory(List<Report> reports, String studentUserName, int count) {
+        return reports.stream()
                 .filter(report -> Objects.equals(report.getStudentUserName(), studentUserName))
                 .sorted(Comparator.comparing(Report::getDate).reversed())
                 .limit(count)
                 .sorted(Comparator.comparing(Report::getDate))
-                .forEach(report -> {
-                    result.append(report.getStudentUserName()).append("\n")
-                            .append(report.getDate()).append("\n") // Добавляем дату
-                            .append(report.getHours()).append("\n") // Добавляем количество часов
-                            .append(report.getTitle()).append("\n") // Добавляем заголовок
-                            .append("-----------------\n"); // Добавляем разделитель
-                });
-        return result.toString();
+                .map(report -> report.getDate() + "\n" + report.getHours() + "\n" + report.getTitle())
+                .collect(Collectors.joining("\n-----------------\n", studentUserName + "\n", ""));
     }
 }
